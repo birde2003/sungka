@@ -113,14 +113,17 @@ class TestSungkaGame(unittest.TestCase):
         self.game.current_player = 1
         
         # Player 1 picks from pit 6 (10 stones)
+        # Distribution: 7(store)->8->9->10->11->12->13->14->(skip 15)->0->1
+        # Last stone lands at pit 1 (was empty)
+        # During distribution, pit 13 receives 1 stone
+        # Capture occurs: pit 1 (1) + pit 13 (1) = 2 stones captured
         self.game.make_move(6)
         board = self.game.get_board_state()
         
-        # Player 2's store (15) should still be 0
+        # Player 2's store (15) should still be 0 (was skipped)
         self.assertEqual(board[15], 0)
         
-        # Player 1's store should have 3 stones (1 from distribution + 2 from capture)
-        # Last stone lands at pit 1 (empty), opposite pit 13 has 1 stone, so capture occurs
+        # Player 1's store: 1 (from distribution) + 2 (from capture) = 3
         self.assertEqual(board[7], 3)
     
     def test_capture_stones(self):

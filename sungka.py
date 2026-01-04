@@ -179,10 +179,7 @@ class SungkaGame:
             print(f"Current player: Player {self.current_player}")
             valid_moves = self.get_valid_moves()
             if valid_moves:
-                if self.current_player == 1:
-                    print(f"Valid moves: {[i for i in valid_moves]}")
-                else:
-                    print(f"Valid moves: {[i for i in valid_moves]}")
+                print(f"Valid moves: {valid_moves}")
         
         # Show scores
         scores = self.get_scores()
